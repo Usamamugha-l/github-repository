@@ -1,133 +1,117 @@
-// Elements
-const audio = document.getElementById("audioPlayer");
-const loader = document.getElementById("preloader");
-const emptyArea = document.getElementById("emptyarea");
-const mobileToggleMenu = document.getElementById("mobiletogglemenu");
-const backToTopButton = document.getElementById("backtotopbutton");
+var loader = document.getElementById("preloader");
 
-// Toggle Settings Panel
-function toggleSettings() {
-  document.getElementById("setting-container").classList.toggle("settingactivate");
-  document.getElementById("visualmodetogglebuttoncontainer").classList.toggle("visualmodeshow");
-  document.getElementById("soundtogglebuttoncontainer").classList.toggle("soundmodeshow");
+function settingtoggle() {
+    document.getElementById("setting-container").classList.toggle("settingactivate");
+    document.getElementById("visualmodetogglebuttoncontainer").classList.toggle("visualmodeshow");
 }
 
-// Play or Pause Audio Based on Switch
-function toggleAudio() {
-  const isSoundOn = document.getElementById("switchforsound").checked;
-  isSoundOn ? audio.play() : audio.pause();
+function visualmode() {
+    document.body.classList.toggle("light-mode");
+    document.querySelectorAll(".needtobeinvert").forEach(function (e) {
+        e.classList.toggle("invertapplied");
+    });
 }
 
-// Toggle Light/Dark Mode and Image Inversion
-function toggleVisualMode() {
-  document.body.classList.toggle("light-mode");
-  document.querySelectorAll(".needtobeinvert").forEach(el => {
-    el.classList.toggle("invertapplied");
-  });
-}
-
-// On Window Load
-window.addEventListener("load", () => {
-  loader.style.display = "none";
-  document.querySelector(".hey").classList.add("popup");
+window.addEventListener("load", function () {
+    loader.style.display = "none";
+    document.querySelector(".hey").classList.add("popup");
 });
 
-// Hamburger Menu Toggle
-function toggleHamburgerMenu() {
-  document.body.classList.toggle("stopscrolling");
-  mobileToggleMenu.classList.toggle("show-toggle-menu");
+let emptyArea = document.getElementById("emptyarea"),
+    mobileTogglemenu = document.getElementById("mobiletogglemenu");
 
-  document.getElementById("burger-bar1").classList.toggle("hamburger-animation1");
-  document.getElementById("burger-bar2").classList.toggle("hamburger-animation2");
-  document.getElementById("burger-bar3").classList.toggle("hamburger-animation3");
+function hamburgerMenu() {
+    document.body.classList.toggle("stopscrolling");
+    document.getElementById("mobiletogglemenu").classList.toggle("show-toggle-menu");
+    document.getElementById("burger-bar1").classList.toggle("hamburger-animation1");
+    document.getElementById("burger-bar2").classList.toggle("hamburger-animation2");
+    document.getElementById("burger-bar3").classList.toggle("hamburger-animation3");
 }
 
-// Hide Menu When List Item Clicked
-function hideMenuByClick() {
-  document.body.classList.remove("stopscrolling");
-  mobileToggleMenu.classList.remove("show-toggle-menu");
-
-  document.getElementById("burger-bar1").classList.remove("hamburger-animation1");
-  document.getElementById("burger-bar2").classList.remove("hamburger-animation2");
-  document.getElementById("burger-bar3").classList.remove("hamburger-animation3");
+function hidemenubyli() {
+    document.body.classList.toggle("stopscrolling");
+    document.getElementById("mobiletogglemenu").classList.remove("show-toggle-menu");
+    document.getElementById("burger-bar1").classList.remove("hamburger-animation1");
+    document.getElementById("burger-bar2").classList.remove("hamburger-animation2");
+    document.getElementById("burger-bar3").classList.remove("hamburger-animation3");
 }
 
-// Highlight Active Section in Navbar
-const sections = document.querySelectorAll("section");
-const desktopNavItems = document.querySelectorAll(".navbar .navbar-tabs .navbar-tabs-ul li");
-const mobileNavItems = document.querySelectorAll(".mobiletogglemenu .mobile-navbar-tabs-ul li");
+const sections = document.querySelectorAll("section"),
+    navLi = document.querySelectorAll(".navbar .navbar-tabs .navbar-tabs-ul li"),
+    mobilenavLi = document.querySelectorAll(".mobiletogglemenu .mobile-navbar-tabs-ul li");
 
 window.addEventListener("scroll", () => {
-  let currentSection = "";
+    let e = "";
+    sections.forEach(t => {
+        let o = t.offsetTop;
+        t.clientHeight, pageYOffset >= o - 200 && (e = t.getAttribute("id"));
+    });
 
-  sections.forEach(section => {
-    if (window.pageYOffset >= section.offsetTop - 200) {
-      currentSection = section.getAttribute("id");
-    }
-  });
+    mobilenavLi.forEach(t => {
+        t.classList.remove("activeThismobiletab");
+        t.classList.contains(e) && t.classList.add("activeThismobiletab");
+    });
 
-  mobileNavItems.forEach(item => {
-    item.classList.remove("activeThismobiletab");
-    if (item.classList.contains(currentSection)) {
-      item.classList.add("activeThismobiletab");
-    }
-  });
-
-  desktopNavItems.forEach(item => {
-    item.classList.remove("activeThistab");
-    if (item.classList.contains(currentSection)) {
-      item.classList.add("activeThistab");
-    }
-  });
+    navLi.forEach(t => {
+        t.classList.remove("activeThistab");
+        t.classList.contains(e) && t.classList.add("activeThistab");
+    });
 });
 
-// Scroll to Top Button Visibility
+console.log("%c Designed and Developed by Vinod Jangid ", "background-image: linear-gradient(90deg,#8000ff,#6bc5f8); color: white;font-weight:900;font-size:1rem; padding:20px;");
+
+let mybutton = document.getElementById("backtotopbutton");
+
 function scrollFunction() {
-  const shouldShow = document.body.scrollTop > 400 || document.documentElement.scrollTop > 400;
-  backToTopButton.style.display = shouldShow ? "block" : "none";
+    document.body.scrollTop > 400 || document.documentElement.scrollTop > 400
+        ? mybutton.style.display = "block"
+        : mybutton.style.display = "none";
 }
 
-function scrollToTop() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
+function scrolltoTopfunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 }
 
-window.onscroll = scrollFunction;
+window.onscroll = function () {
+    scrollFunction();
+};
 
-// Disable Right Click on Images
-document.addEventListener("contextmenu", e => {
-  if (e.target.nodeName === "IMG") {
-    e.preventDefault();
-  }
-});
+document.addEventListener("contextmenu", function (e) {
+    "IMG" === e.target.nodeName && e.preventDefault();
+}, !1);
 
-// Footer Pupils Eye Movement
-const pupils = Array.from(document.getElementsByClassName("footer-pupil"));
-const pupilStart = -10;
-const pupilRangeX = 20;
-const pupilRangeY = 15;
+let Pupils = document.getElementsByClassName("footer-pupil"),
+    pupilsArr = Array.from(Pupils),
+    pupilStartPoint = -10,
+    pupilRangeX = 20,
+    pupilRangeY = 15,
+    mouseXStartPoint = 0,
+    mouseXEndPoint = window.innerWidth,
+    currentXPosition = 0,
+    fracXValue = 0,
+    mouseYEndPoint = window.innerHeight,
+    currentYPosition = 0,
+    fracYValue = 0,
+    mouseXRange = mouseXEndPoint - mouseXStartPoint;
 
-let mouseXEnd = window.innerWidth;
-let mouseYEnd = window.innerHeight;
-let mouseXRange = mouseXEnd;
+const mouseMove = e => {
+    fracXValue = (currentXPosition = e.clientX - mouseXStartPoint) / mouseXRange;
+    fracYValue = (currentYPosition = e.clientY) / mouseYEndPoint;
 
-function onMouseMove(e) {
-  const fracX = (e.clientX / mouseXRange);
-  const fracY = (e.clientY / mouseYEnd);
+    let t = pupilStartPoint + fracXValue * pupilRangeX,
+        o = pupilStartPoint + fracYValue * pupilRangeY;
 
-  const moveX = pupilStart + fracX * pupilRangeX;
-  const moveY = pupilStart + fracY * pupilRangeY;
+    pupilsArr.forEach(e => {
+        e.style.transform = `translate(${t}px, ${o}px)`;
+    });
+};
 
-  pupils.forEach(pupil => {
-    pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
-  });
-}
+const windowResize = e => {
+    mouseXEndPoint = window.innerWidth;
+    mouseYEndPoint = window.innerHeight;
+    mouseXRange = mouseXEndPoint - mouseXStartPoint;
+};
 
-function onWindowResize() {
-  mouseXEnd = window.innerWidth;
-  mouseYEnd = window.innerHeight;
-  mouseXRange = mouseXEnd;
-}
-
-window.addEventListener("mousemove", onMouseMove);
-window.addEventListener("resize", onWindowResize);
+window.addEventListener("mousemove", mouseMove);
+window.addEventListener("resize", windowResize);
