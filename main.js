@@ -13,8 +13,8 @@ function visualmode() {
 }
 
 window.addEventListener("load", function () {
-    loader.style.display = "none";
-    document.querySelector(".hey").classList.add("popup");
+  if (loader) loader.style.display = "none";
+  document.querySelector(".hey").classList.add("popup");
 });
 
 let emptyArea = document.getElementById("emptyarea"),
