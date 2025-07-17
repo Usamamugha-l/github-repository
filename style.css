@@ -1,3 +1,6 @@
+.justify-text {
+  text-align: justify;
+}
 #labelforsetting,
 #labelforvisualmode,
 #switchforvisualmode:checked+#labelforvisualmode {
@@ -1025,7 +1028,8 @@ noscript {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    position: relative
+    position: relative;
+    margin-left: 50px;
 }
 
 .dp::before {
