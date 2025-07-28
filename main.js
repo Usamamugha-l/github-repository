@@ -5,12 +5,13 @@ function settingtoggle() {
     document.getElementById("visualmodetogglebuttoncontainer").classList.toggle("visualmodeshow");
 }
 
-function visualmode() {
-    document.body.classList.toggle("light-mode");
-    document.querySelectorAll(".needtobeinvert").forEach(function (e) {
-        e.classList.toggle("invertapplied");
+function visualmode(){
+    document.body.classList.toggle('light-mode');
+    var elements = document.querySelectorAll('.needtobeinvert');
+    elements.forEach(function(element) {
+        element.classList.toggle('invertapplied');
     });
-}
+  }
 
 window.addEventListener("load", function () {
   if (loader) loader.style.display = "none";

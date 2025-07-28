@@ -1,6 +1,143 @@
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.project-card {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.project-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.5;
+}
+.tags {
+  margin: 10px 0;
+}
+
+.tags span {
+  display: inline-block;
+  background-color: #e0e0e0;
+  color: #333;
+  font-size: 1rem;
+  padding: 4px 10px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.tags span:hover {
+  background-color: #ccc;
+}
+
+.demo-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #1e88e5;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom 0.3s ease;
+}
+
+.demo-link:hover {
+  border-bottom: 1px solid #1e88e5;
+}
+
+
+.fyp-highlight h3 {
+  color: #333;
+}
+
 .justify-text {
   text-align: justify;
 }
+
+.certification-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  width: 100%;
+  margin-top: 50px;
+  justify-items: center;
+}
+
+.certification-grid a {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.certification-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.certification-grid a::after {
+  content: attr(data-title);
+  display: block;
+  margin-top: 10px;
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.projects-heading-article,
+.section-heading-article,
+.skills-heading-article {
+    font-size: 3rem;
+    font-family: fira code;
+    font-weight: 500;
+    background-image: linear-gradient(90deg, var(--static-heading-gradient-blue), var(--static-heading-gradient-pink));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-bottom: 2px solid #00ffff;
+}
+
+.projects-heading,
+.section-heading,
+.skills-heading {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.about-section,
+.projects-section-div,
+.skills-section {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 #labelforsetting,
 #labelforvisualmode,
 #switchforvisualmode:checked+#labelforvisualmode {
@@ -254,7 +391,7 @@ html {
     position: relative;
     width: 40px;
     height: 40px;
-    background-image: url(src/png/crescent-moon\ \(1\).png);
+    background-image: url(src/png/moon.png);
     background-size: 50%;
     transition-duration: .5s;
     cursor: pointer
@@ -894,7 +1031,7 @@ noscript {
 .skills-heading-article,
 .skillsHeadingP {
     background-image: -webkit-gradient(linear, left top, right top, var(--static-heading-gradient-blue), var(--static-heading-gradient-pink));
-    background-image: -webkit-linear-gradient(left, var(--static-heading-gradient-blue), var(--static-heading-gradient-pink))
+    background-image: -webkit-linear-gradient(left, var(--static-heading-gradient-blue), var(--static-heading-gradient-pink)) 
 }
 
 .dp::after,
@@ -962,41 +1099,10 @@ noscript {
     padding-top: 200px
 }
 
-.about-section,
-.projects-section-div,
-.skills-section {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center
-}
-
-.projects-heading,
-.section-heading,
-.skills-heading {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 10px
-}
-
 .dp img,
 .dp::after,
 .dp::before {
     width: 300px
-}
-
-.projects-heading-article,
-.section-heading-article,
-.skills-heading-article {
-    font-size: 3rem;
-    font-family: fira code;
-    font-weight: 500;
-    background-image: linear-gradient(90deg, var(--static-heading-gradient-blue), var(--static-heading-gradient-pink));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent
 }
 
 .projectsHeadingP,
@@ -1053,7 +1159,7 @@ noscript {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center
+    justify-content: center;
 }
 
 .language-speak,
@@ -1946,6 +2052,7 @@ footer {
     }
 
     .about-section,
+    .certificate-section,
     .projects-section-div,
     .skills-section {
         width: 80%
